@@ -1,0 +1,16 @@
+<launch>	  
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">	    
+		<arg name="world_name" value="$(find kart_gazebo)/worlds/kart.world"/>	    
+		<arg name="gui" value="true"/>	  
+	</include>
+
+	<!-- ros_control kart launch file -->
+	<include file="$(find kart_control)/launch/kart_control.launch" />
+
+	<!-- urdf xml robot description loaded on the Parameter Server, converting the xacro into a proper urdf file-->
+	<param name="robot_description" command="$(find xacro)/xacro.py '$(find kart_description)/urdf/kart.xacro'" />
+
+	<!-- push robot_description to factory and spawn robot in gazebo -->
+	<node name="kart_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+	 args="-urdf -param robot_description -model kart" />	
+</launch>
