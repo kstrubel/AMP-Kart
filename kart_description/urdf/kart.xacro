@@ -1,8 +1,5 @@
 <?xml version="1.0"?>
 <robot name="kart" xmlns:xacro="http://www.ros.org/wiki/xacro">
-	<xacro:include filename="$(find kart_description)/urdf/kart.gazebo" />
-	<xacro:include filename="$(find kart_description)/urdf/materials.xacro" />
-	<xacro:include filename="$(find kart_description)/urdf/macros.xacro" />
         <!-- Put here the robot description -->
 	<xacro:property name="PI" value="3.1415926535897931"/>
 
@@ -21,6 +18,10 @@
 
 	<xacro:property name="cameraSize" value="0.05"/>
 	<xacro:property name="cameraMass" value="0.1"/>
+
+	<xacro:include filename="$(find kart_description)/urdf/kart.gazebo" />
+	<xacro:include filename="$(find kart_description)/urdf/materials.xacro" />
+	<xacro:include filename="$(find kart_description)/urdf/macros.xacro" />
 
 	<link name="footprint" />
 
@@ -77,5 +78,8 @@
 	    <sphere_inertia m="${casterMass}" r="${casterRadius}"/>
 	  </inertial>
 	</link>
+
+	<wheel lr="left" tY="1"/>
+	<wheel lr="right" tY="-1"/>
 
 </robot>

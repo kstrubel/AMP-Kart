@@ -4,11 +4,7 @@
   <rosparam file="$(find kart_control)/config/kart_control.yaml" command="load"/>
 
   <!-- load the controllers -->
-  <node name="controller_spawner"
-    pkg="controller_manager"
-    type="spawner" respawn="false"
-    output="screen" ns="/kart"
-    args="joint_state_controller
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/kart" args="joint_state_controller
       rightWheel_effort_controller
       leftWheel_effort_controller"
   />
